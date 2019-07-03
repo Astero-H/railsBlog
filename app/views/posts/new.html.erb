@@ -1,0 +1,14 @@
+<h2>  Créer un nouveau post</h2>
+
+<%= form_tag "/posts", method: "post" do %>
+    <div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="titre">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="description">
+    </div>
+  </div>
+<% end %>
+
+
