@@ -5,7 +5,7 @@ class Posts < ActiveRecord::Migration[5.2]
       t.string  :description
       t.date    :date
       t.string  :image
-      t.integer :author_id
+      t.integer :user_id
 
       t.timestamps
     end
