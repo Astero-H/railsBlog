@@ -10,6 +10,14 @@
   </head>
 
   <body>
+   <% if user_signed_in? != true %>
+    <%= link_to('Se connecter', new_user_session_path, method: :create, class: "btn btn-light") %>
+  <% else %> 
+    <p> Vous êtes connecté en tant que: <%= current_user.email%></p>
+    <%= link_to('Se déconnecter', destroy_user_session_path, method: :delete, class: "btn btn-light") %>  
+<% end %>
     <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   </body>
 </html>
