@@ -1,0 +1,17 @@
+
+<h2 class= "h2 text-center"> Détails de l'article </h2>
+
+<div class="container">
+    <div class="card bg-dark text-white">
+        <img class="card-img" src="/img/<%= @post.image %>" alt="Card image">
+        <div class="card-img-overlay">
+            <h5 class="card-title"><%=@post.title %></h5>
+            <p class="card-text"><%= @post.description %></p>
+            <p class="card-text"> Publié le <%= @post.date %></p>
+        </div>
+    </div>
+</div>
+
+<p>
+    <a href="<%= posts_path%>" class="btn btn-primary"> Retour aux articles </a>
+</p>

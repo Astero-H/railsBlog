@@ -1,21 +1,28 @@
 class PostsController < ApplicationController
+
+
   def index
     @posts = Post.all
   end
 
+
   def show
-
-  end 
-
-
-  def create
-    Post.create title: params[:title,:date,:description,:image,:user_id]
-    redirect_to "/posts"
+    @post= Post.find(params[:id])
   end
 
-  # def show 
-  #   @author = User.find(params[:author_id])
-  #   @posts = @author.posts
-  # end
+  def new
+    @post = Post.new
+  end
+
+  def edit
+    @post= Post.find(params[:id])
+  end
+
+  def update
+    @post= Post.find(params[:id])  
+    post_params = params.require(:post).permit(:title, :description)
+    @post.update(post_params)
+    redirect_to "/posts"
+  end
 
 end
