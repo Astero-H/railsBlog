@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     # before_action :authenticate_user!
-    # before_action :load_user, only: [:show, :edit, :update]
+     before_action :load_user, only: [:show, :edit, :update]
      
     def index
       # if user_signed_in?
@@ -10,10 +10,11 @@ class UsersController < ApplicationController
       #   redirect_to('Login', new_user_session_path) 
       # end    
       
-      @users = User.all.limit(30).order(:last_name)
+      @users = User.all
     end
   
     def show
+       @user= User.find(params[:id])
     end
   
   

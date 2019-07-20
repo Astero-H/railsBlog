@@ -1,0 +1,17 @@
+<h2 class= "h2 text-center"> Liste des auteurs</h2>
+<div class="container">
+  <% @users.each do |user| %>
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= user.first_name %>  <%= user.last_name %></h5>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"> <%= user.email %></small>
+        </div>
+      </div>
+    </div>
+    <br>
+  <% end %>
+  <p><a href="<%= posts_path%>" class="btn btn-primary"> Retour aux articles </a></p>
+</div>

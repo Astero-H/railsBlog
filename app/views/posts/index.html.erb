@@ -1,24 +1,32 @@
 <h2 class= "h2 text-center"> Liste des posts</h2>
 <div class="container">
-  <% @posts.each do |a_post| %>
+  <% @posts.each do |post| %>
     <div class="card flex-row flex-wrap">
       <div class="card-header border-0">
-        <img src="/img/<%=a_post.image %>" alt="image-post" height=50 width=100>
+        <img src="/img/<%=post.image %>" alt="image-post" height=50 width=100>
       </div>
       <div class="card-block px-2">
-        <a href ="<%= post_path(a_post.id) %>" class="btn btn-outline-primary">
-          <h4 class="card-title"><%= a_post.title%></h4>
+        <a href ="<%= post_path(post.id) %>" class="btn btn-outline-primary">
+          <h4 class="card-title"><%= post.title%></h4>
         </a>
-        <p class="card-text"><%= a_post.description%> </p>
-        <a href ="<%= edit_post_path(a_post.id) %>" class="btn btn-outline-success"> Editer </a>
-        <a href ="<%= post_path(a_post.id) %>" class="btn btn-outline-danger"> Supprimer </a>
+        <p class="card-text"><%= post.description%> </p>
+        <a href ="<%= edit_post_path(post.id) %>" class="btn btn-outline-success"> Editer </a>
+        <a href ="<%= post_path(post.id) %>" class="btn btn-outline-danger" data-method="DELETE" data-confirm ="Confirmer la suppression ?"> Supprimer </a>
       </div>
       <div class="w-100"></div>
       <div class="card-footer w-100 text-muted">
-        <%= a_post.date%>
-        ID : <%= a_post.user_id%>
+        <% if post.user_id != nil %>
+          Edité par 
+          <a href ="<%= users_path %>" class="btn btn-outline-info">
+            <%= User.find(post.user_id.to_i).first_name%>
+          </a>
+          le <%= post.date%>
+        <% else %>
+          Auteur inconnu
+        <% end %>
       </div>
     </div>
     <br>
   <% end %>
+  <a href ="<%= new_post_path %>" class="btn btn-outline-info"> Créer un article </a>
 </div>
