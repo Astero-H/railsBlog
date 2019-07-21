@@ -2,9 +2,9 @@
 <div class="container py-3">
   <div class="card">
     <div class="row ">
-      <!-- <div class="col-md-4">
-        <= image_tag @post.image alt:"Card image" width:"100%"%>
-      </div> -->
+       <div class="card-header border-0">
+        <%= image_tag @post.image.url(:medium)%>
+      </div>
       <div class="col-md-8 px-3">
         <div class="card-block px-3">
           <h5 class="card-title"><%=@post.title %></h5>

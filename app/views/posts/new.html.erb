@@ -1,9 +1,12 @@
-<!-- TODO : Il faut pouvoir rajouter une image-->
 <div class="container">
   <%= form_for @post do |f| %>
     <div class="form-group">
       <label for="title">Titre de l'article</label>
       <%= f.text_field :title, class: 'form-control', placeholder:'Titre'%>
+    </div>
+    <div class="form-group">
+       <label for="image">Vignette de l'article</label>
+       <%= f.file_field :image, class: 'form-control', placeholder:'Image'%>
     </div>
     <div class="form-group">
       <label for="description">Description de l'article</label>

@@ -13,9 +13,6 @@
     <div class = "row">
     <% @posts.each do |post| %>
     <div class="card flex-row flex-wrap">
-      <!-- <div class="card-header border-0">
-        <img src="/img/<=post.image %>" alt="image-post" height=50 width=100>
-      </div> -->
       <div class="card-block px-2">
         <a href ="<%= post_path(post.id) %>" class="btn btn-outline-primary">
           <h4 class="card-title"><%= post.title%></h4>

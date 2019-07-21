@@ -3,8 +3,7 @@ class Posts < ActiveRecord::Migration[5.2]
     create_table :posts do |t|
       t.string  :title
       t.string  :description
-      t.date    :date
-      t.string  :image
+      t.attachment   :image
       t.integer :user_id
 
       t.timestamps
