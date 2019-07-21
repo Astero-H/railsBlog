@@ -1,10 +1,18 @@
 class PostsController < ApplicationController
-
   before_action :set_post, only:[:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:new, :create]
+  before_action :is_owner?, only: [:edit, :update, :destroy]
+
+  def is_owner?
+    if User.find(@post.user_id) != current_user
+      redirect_to root_path
+    end
+  end
+
 
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order('updated_at DESC')
   end
 
 
@@ -28,7 +36,7 @@ class PostsController < ApplicationController
 
 
   def create
-    post = Post.create(post_params)
+    post = current_user.posts.create(post_params)
     redirect_to "/posts"
   end
 
@@ -40,8 +48,8 @@ class PostsController < ApplicationController
 
   private 
 
-  def post_params
-    params.require(:post).permit(:title, :description)
+  def post_params    
+    params.require(:post).permit(:title, :description, :image)
   end 
 
   def set_post
