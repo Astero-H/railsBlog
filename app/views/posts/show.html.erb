@@ -10,7 +10,14 @@
           <h5 class="card-title"><%=@post.title %></h5>
           <p class="card-text"><%= @post.description %></p>
           <p class="card-text"> 
-            Publié le <%= @post.created_at %> 
+            Publié 
+            <% if @post.user_id != nil %>
+              par
+              <a href ="<%= users_path %>" class="btn btn-outline-info">
+              <%= User.find(@post.user_id.to_i).first_name%>
+              </a>
+            <% end %>
+            le <%= @post.created_at %> 
             <% if @post.created_at != @post.updated_at %>
             puis édité le <%= @post.updated_at%>
             <% end %>

@@ -1,6 +1,17 @@
-<h2 class= "h2 text-center"> Liste des posts</h2>
-<div class="container">
-  <% @posts.each do |post| %>
+<h2 class= "h2 text-center"> Profil de l'auteur </h2>
+<div class="container py-3">
+  <div class="card">
+    <div class="row ">
+      <div class="col-md-8 px-3">
+        <div class="card-block px-3">
+          <h5 class="card-title"><%=@user.first_name %> <%=@user.last_name %></h5>
+          <p class="card-text">Adresse e-mail: <%= @user.email %></p>
+        </div>
+      </div>
+    </div>
+    <h2 class = "row">Articles de l'auteur</h2>
+    <div class = "row">
+    <% @posts.each do |post| %>
     <div class="card flex-row flex-wrap">
       <!-- <div class="card-header border-0">
         <img src="/img/<=post.image %>" alt="image-post" height=50 width=100>
@@ -17,19 +28,11 @@
       </div>
       <div class="w-100"></div>
       <div class="card-footer w-100 text-muted">
-        <% if post.user_id != nil %>
-          Edité par 
-          <a href ="<%= user_path(User.find(post.user_id)) %>" class="btn btn-outline-info">
-            <%= User.find(post.user_id.to_i).first_name%>
-          </a>
-          le <%= post.updated_at%>
-        <% else %>
-          Auteur inconnu
-        <% end %>
+        Edité le <%= post.updated_at%>
       </div>
     </div>
     <br>
   <% end %>
-  <%= paginate @posts %>
-  <a href ="<%= new_post_path %>" class="btn btn-outline-info"> Créer un article </a>
+  </div>
+  <a href="<%= posts_path%>" class="btn btn-primary"> Retour aux articles </a>
 </div>
