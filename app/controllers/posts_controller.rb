@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all.order('updated_at DESC')
+    @posts = Post.order('updated_at DESC').page(params[:page]).per(4)
   end
 
 
