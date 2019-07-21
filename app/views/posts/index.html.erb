@@ -1,35 +1,45 @@
-<h2 class= "h2 text-center"> Liste des posts</h2>
-<div class="container">
-  <% @posts.each do |post| %>
-    <div class="card flex-row flex-wrap">
-      <div class="card-header border-0">
-        <%= image_tag post.image.url(:thumb)%>
-      </div>
-      <div class="card-block px-2">
-        <a href ="<%= post_path(post.id) %>" class="btn btn-outline-primary">
-          <h4 class="card-title"><%= post.title%></h4>
-        </a>
-        <p class="card-text"><%= post.description.truncate_words(30)%></p>
-        <% if User.find(post.user_id) == current_user %>
-        <a href ="<%= edit_post_path(post.id) %>" class="btn btn-outline-success"> Editer </a>
-        <a href ="<%= post_path(post.id) %>" class="btn btn-outline-danger" data-method="DELETE" data-confirm ="Confirmer la suppression ?"> Supprimer </a>
-        <% end %>
-      </div>
-      <div class="w-100"></div>
-      <div class="card-footer w-100 text-muted">
-        <% if post.user_id != nil %>
-          Edité par 
-          <a href ="<%= user_path(User.find(post.user_id)) %>" class="btn btn-outline-info">
-            <%= User.find(post.user_id.to_i).first_name%>
-          </a>
-          le <%= post.updated_at%>
-        <% else %>
-          Auteur inconnu
-        <% end %>
-      </div>
+<div class="article-list">
+  <div class="container">
+    <div class="intro">
+      <h2 class="text-center"> Liste des posts</h2>
     </div>
-    <br>
-  <% end %>
-  <%= paginate @posts %>
-  <a href ="<%= new_post_path %>" class="btn btn-outline-info"> Créer un article </a>
+    <div class="row articles">
+      <% @posts.each do |post| %>
+        <div class="col-sm-6 col-md-4 card d-lg-flex justify-content-center align-items-center">
+          <div class="img">
+            <%= image_tag post.image.url(:thumb)%>
+          </div>
+          <div class="name">
+            <a href ="<%= post_path(post.id) %>" class="btn btn-outline-primary">
+              <h4 class="card-title"><%= post.title%></h4>
+            </a>
+          </div>
+          <p class="description text-center">
+            <%= post.description.truncate_words(30)%>
+          </p>
+            <% if User.find(post.user_id) == current_user %>
+            <div>
+              <a href ="<%= edit_post_path(post.id) %>" class="btn btn-outline-success"> Editer </a>
+              <a href ="<%= post_path(post.id) %>" class="btn btn-outline-danger" data-method="DELETE" data-confirm ="Confirmer la suppression ?"> Supprimer </a>
+            </div>
+            <% end %>
+          <div class="card-footer w-100 text-muted">
+            <% if post.user_id != nil %>
+              Edité par 
+              <a href ="<%= user_path(User.find(post.user_id)) %>" class="btn btn-outline-info">
+                <%= User.find(post.user_id.to_i).first_name%>
+              </a>
+              le <%= post.updated_at%>
+            <% else %>
+              Auteur inconnu
+            <% end %>
+          </div>
+        </div>
+      <% end %> 
+    </div>
+    <div class="row action">
+      <%= paginate @posts %>
+      <a href ="<%= new_post_path %>" class="btn btn-outline-info"> Créer un article </a>
+    </div>
+  </div>
 </div>
